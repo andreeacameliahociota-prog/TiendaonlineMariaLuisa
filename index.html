@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos María Luisa - Molina de Segura</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .bg-maria { background-color: #5d4037; }
+        .btn-pedido { background-color: #25d366; }
+    </style>
+</head>
+<body class="bg-stone-50 font-sans">
+
+    <header class="bg-maria text-white p-10 shadow-lg text-center">
+        <h1 class="text-4xl font-serif font-bold italic">Productos María Luisa</h1>
+        <p class="text-orange-200 tracking-widest text-sm uppercase mt-2">Especias y Condimentos · Calle Estación</p>
+    </header>
+
+    <main class="container mx-auto p-6 max-w-2xl">
+        <div class="bg-white p-8 rounded-[2rem] shadow-xl text-center mb-8 border-b-4 border-orange-400">
+            <h2 class="text-xl font-bold">🛒 Haz tu pedido por WhatsApp</h2>
+            <p class="text-gray-500 text-sm">Añade productos y envía la lista sin llamadas.</p>
+        </div>
+
+        <div class="space-y-4">
+            <div class="bg-white p-5 rounded-2xl shadow-sm border flex justify-between items-center">
+                <span><b>Pimentón</b> (3,50€)</span>
+                <button onclick="add('Pimentón', 3.5)" class="bg-orange-100 text-orange-800 px-4 py-2 rounded-xl font-bold">+ Añadir</button>
+            </div>
+            <div class="bg-white p-5 rounded-2xl shadow-sm border flex justify-between items-center">
+                <span><b>Azafrán</b> (5,00€)</span>
+                <button onclick="add('Azafrán', 5.0)" class="bg-orange-100 text-orange-800 px-4 py-2 rounded-xl font-bold">+ Añadir</button>
+            </div>
+        </div>
+
+        <div class="mt-10 bg-white p-8 rounded-[2rem] shadow-2xl border-2 border-orange-100 text-center">
+            <p class="text-gray-400 mb-2 uppercase text-xs font-bold">Tu Cesta:</p>
+            <div id="cesta" class="font-medium text-gray-700 mb-4">Vacía</div>
+            <div class="text-3xl font-black mb-6 text-stone-800"><span id="total">0.00</span>€</div>
+            
+            <button onclick="enviar()" class="btn-pedido w-full text-white font-black py-5 rounded-2xl shadow-lg text-xl">
+                ENVIAR PEDIDO 📱
+            </button>
+        </div>
+    </main>
+
+    <script>
+        let items = []; let total = 0;
+        function add(n, p) {
+            items.push(n); total += p;
+            document.getElementById('cesta').innerText = items.join(', ');
+            document.getElementById('total').innerText = total.toFixed(2);
+        }
+        function enviar() {
+            if(items.length === 0) return alert("Cesta vacía");
+            let msg = encodeURIComponent("Hola María Luisa, quiero pedir: " + items.join(', ') + ". Total: " + total.toFixed(2) + "€");
+            window.open("https://wa.me/34664417137?text=" + msg);
+        }
+    </script>
+</body>
+</html>
