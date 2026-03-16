@@ -3,98 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos María Luisa - Molina de Segura</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Tareas de Geografía y Lengua - 2º Bachillerato</title>
     <style>
-        .bg-maria { background-color: #5d4037; } /* Marrón especia */
-        .btn-añadir { background-color: #f3e5f5; color: #4a148c; }
-        .btn-whatsapp { background-color: #25d366; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+        }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        section {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2980b9;
+            border-bottom: 2px solid #2980b9;
+            padding-bottom: 10px;
+        }
+        h3 {
+            color: #16a085;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #ecf0f1;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e67e22;
+        }
+        ul {
+            list-style-type: square;
+        }
     </style>
 </head>
-<body class="bg-stone-50 font-sans">
+<body>
 
-    <header class="bg-maria text-white p-8 shadow-lg text-center">
-        <div class="flex flex-col items-center">
-            <div class="bg-white p-4 rounded-full mb-4 shadow-inner">
-                <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#5d4037" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
-            </div>
-            <h1 class="text-3xl font-serif font-bold italic">Productos María Luisa</h1>
-            <p class="text-orange-200 tracking-widest text-xs uppercase mt-2">Molina de Segura · Calle Estación</p>
-        </div>
-    </header>
+<header>
+    <h1>Trabajo de Repaso - 2º Bachillerato</h1>
+    <p>Geografía de España y Lengua Castellana</p>
+</header>
 
-    <main class="container mx-auto p-6 max-w-2xl">
-        <div class="bg-white p-8 rounded-[2rem] shadow-xl text-center mb-8 border-b-4 border-orange-400">
-            <h2 class="text-xl font-bold">🌿 Catálogo de Especias</h2>
-            <p class="text-gray-500 text-sm italic">Selecciona los productos para tu pedido</p>
-        </div>
+<section>
+    <h2>1. Comentario del Mapa Litológico</h2>
+    <h3>Aspectos Generales</h3>
+    <ul>
+        <li><strong>Tipo de Fuente:</strong> Mapa temático físico analítico.</li>
+        <li><strong>Fenómeno:</strong> Representa la litología de la Península Ibérica (áreas silícea, caliza y arcillosa).</li>
+        <li><strong>Proyección:</strong> Cónica o UTM (evita la distorsión de Mercator en latitudes medias).</li>
+        <li><strong>Forma:</strong> Mapa de coropletas (colores para cada área).</li>
+    </ul>
 
-        <div class="space-y-3" id="lista-productos">
-            <div class="bg-white p-4 rounded-2xl shadow-sm border flex justify-between items-center">
-                <span class="font-bold">Pimentón Dulce</span>
-                <div class="flex items-center gap-4">
-                    <span class="text-gray-600">3,50€</span>
-                    <button onclick="add('Pimentón Dulce', 3.5)" class="bg-orange-100 text-orange-800 px-4 py-2 rounded-xl font-bold hover:bg-orange-200">+ Añadir</button>
-                </div>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow-sm border flex justify-between items-center">
-                <span class="font-bold">Azafrán en Hebra</span>
-                <div class="flex items-center gap-4">
-                    <span class="text-gray-600">5,00€</span>
-                    <button onclick="add('Azafrán Hebra', 5.0)" class="bg-orange-100 text-orange-800 px-4 py-2 rounded-xl font-bold hover:bg-orange-200">+ Añadir</button>
-                </div>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow-sm border flex justify-between items-center">
-                <span class="font-bold">Canela en Rama</span>
-                <div class="flex items-center gap-4">
-                    <span class="text-gray-600">2,80€</span>
-                    <button onclick="add('Canela Rama', 2.8)" class="bg-orange-100 text-orange-800 px-4 py-2 rounded-xl font-bold hover:bg-orange-200">+ Añadir</button>
-                </div>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow-sm border flex justify-between items-center">
-                <span class="font-bold">Pimienta Negra Molida</span>
-                <div class="flex items-center gap-4">
-                    <span class="text-gray-600">2,50€</span>
-                    <button onclick="add('Pimienta Negra', 2.5)" class="bg-orange-100 text-orange-800 px-4 py-2 rounded-xl font-bold hover:bg-orange-200">+ Añadir</button>
-                </div>
-            </div>
-            <div class="bg-white p-4 rounded-2xl shadow-sm border flex justify-between items-center">
-                <span class="font-bold">Orégano de la Sierra</span>
-                <div class="flex items-center gap-4">
-                    <span class="text-gray-600">1,90€</span>
-                    <button onclick="add('Orégano', 1.9)" class="bg-orange-100 text-orange-800 px-4 py-2 rounded-xl font-bold hover:bg-orange-200">+ Añadir</button>
-                </div>
-            </div>
-        </div>
+    <h3>Análisis de las Áreas</h3>
+    <p>La Península se divide en tres dominios principales según el tipo de roca:</p>
+    <ul>
+        <li><span style="color:red">●</span> <strong>Área Silícea:</strong> Rocas duras (granito) en el Oeste. Relieve antiguo y erosionado.</li>
+        <li><span style="color:green">●</span> <strong>Área Caliza:</strong> Rocas sedimentarias en forma de "Z". Modelado kárstico (cuevas y simas).</li>
+        <li><span style="color:orange">●</span> <strong>Área Arcillosa:</strong> Materiales blandos en las grandes cuencas. Relieve de campiñas y páramos.</li>
+    </ul>
+</section>
 
-        <div class="mt-8 bg-white p-8 rounded-[2rem] shadow-2xl border-2 border-orange-100">
-            <h3 class="text-lg font-black mb-2 text-stone-800 uppercase tracking-tighter">Tu Pedido Actual:</h3>
-            <div id="cesta" class="text-gray-600 mb-4 min-h-[40px] italic">Tu cesta está vacía...</div>
-            <div class="flex justify-between items-center border-t pt-4">
-                <span class="text-gray-400 font-bold">TOTAL:</span>
-                <span class="text-3xl font-black text-stone-900"><span id="total">0.00</span>€</span>
-            </div>
-            
-            <button onclick="enviar()" class="btn-whatsapp w-full text-white font-black py-5 rounded-2xl shadow-lg text-xl mt-6 hover:scale-105 transition-transform">
-                📱 ENVIAR POR WHATSAPP
-            </button>
-        </div>
-    </main>
+<section>
+    <h2>2. Comentario Lingüístico: "Violencia en el fútbol"</h2>
+    <h3>Léxico</h3>
+    <p><strong>Dubitaciones:</strong> En el texto se refiere a dudas o vacilaciones ante una acción.</p>
+    <p><strong>Fraternos:</strong> Sentimientos de hermandad, usados aquí de forma irónica respecto a las aficiones.</p>
 
-    <script>
-        let items = []; let total = 0;
-        function add(n, p) {
-            items.push(n); total += p;
-            document.getElementById('cesta').innerText = items.join(', ');
-            document.getElementById('total').innerText = total.toFixed(2);
-        }
-        function enviar() {
-            if(items.length === 0) return alert("Por favor, añade productos primero.");
-            let msg = encodeURIComponent("Hola Productos María Luisa, me gustaría pedir: " + items.join(', ') + ". Total: " + total.toFixed(2) + "€");
-            window.open("https://wa.me/34664417137?text=" + msg);
-        }
-    </script>
+    <h3>Funciones del Lenguaje</h3>
+    <p>Predomina la <strong>función expresiva</strong> (el autor muestra su repulsa y subjetividad) y la <strong>función apelativa</strong> (busca que el lector reflexione sobre la violencia).</p>
+</section>
+
+<section>
+    <h2>3. Ejercicios de Sintaxis</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Oración</th>
+                <th>Sintagma Analizado</th>
+                <th>Función Sintáctica</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>El anciano caminaba con dificultad por la plaza.</td>
+                <td>con dificultad</td>
+                <td>C. C. de Modo</td>
+            </tr>
+            <tr>
+                <td>María no confía en sus compañeros de clase.</td>
+                <td>en sus compañeros</td>
+                <td>C. de Régimen (CRV)</td>
+            </tr>
+            <tr>
+                <td>Se alquilan pisos céntricos.</td>
+                <td>pisos céntricos</td>
+                <td>Sujeto Paciente</td>
+            </tr>
+            <tr>
+                <td>Los niños salieron del colegio contentos.</td>
+                <td>contentos</td>
+                <td>C. Predicativo</td>
+            </tr>
+            <tr>
+                <td>El informe fue redactado por la inspectora.</td>
+                <td>por la inspectora</td>
+                <td>C. Agente</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
 </body>
 </html>
