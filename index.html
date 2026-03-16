@@ -6,97 +6,77 @@
     <title>Productos María Luisa - Almacén de Especias</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Colores corporativos basados en especias */
         .sidebar { background-color: #5d4037; } 
         .seccion { display: none; }
         .seccion.activa { display: block; }
         .card-stats { border-top: 4px solid #fb923c; }
-        #mensajeExito { display: none; }
-        .animar { animation: slideIn 0.5s ease-out; }
-        @keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        /* Animación para que la web se vea profesional */
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body class="bg-slate-50 flex h-screen font-sans overflow-hidden">
 
-    <aside class="w-72 sidebar text-white flex flex-col p-8 shadow-2xl">
+    <aside class="w-80 sidebar text-white flex flex-col p-8 shadow-2xl">
         <div class="mb-10 flex flex-col items-center border-b border-orange-900 pb-8">
-            <div class="bg-white p-4 rounded-2xl mb-4 shadow-lg">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#5d4037" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <div class="bg-white p-4 rounded-3xl mb-4 shadow-xl">
+                <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#5d4037" stroke-width="2">
                     <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                 </svg>
             </div>
-            <h1 class="text-xl font-black text-center tracking-tighter uppercase">María Luisa <span class="text-orange-300 block text-xs tracking-widest mt-1">Especias</span></h1>
+            <h1 class="text-2xl font-black text-center tracking-tighter uppercase">María Luisa</h1>
+            <p class="text-orange-300 text-[10px] tracking-[0.3em] font-bold">PRODUCTOS SELECTOS</p>
         </div>
         
         <nav class="flex-1 space-y-2 text-sm font-bold">
-            <button onclick="cambiarSeccion('tienda')" class="w-full text-left flex items-center space-x-3 p-4 hover:bg-orange-900 rounded-2xl transition"><span>🛒</span> <span>Realizar Pedido</span></button>
-            <button onclick="cambiarSeccion('catalogo')" class="w-full text-left flex items-center space-x-3 p-4 hover:bg-orange-900 rounded-2xl transition"><span>🌿</span> <span>Catálogo</span></button>
-            <button onclick="cambiarSeccion('ubicacion')" class="w-full text-left flex items-center space-x-3 p-4 hover:bg-orange-900 rounded-2xl transition"><span>📍</span> <span>Ubicación</span></button>
+            <button onclick="cambiarSeccion('tienda')" class="w-full text-left flex items-center space-x-3 p-4 hover:bg-orange-900 rounded-2xl transition"><span>🛒</span> <span>Hacer Pedido</span></button>
+            <button onclick="cambiarSeccion('ubicacion')" class="w-full text-left flex items-center space-x-3 p-4 hover:bg-orange-900 rounded-2xl transition"><span>📍</span> <span>Ver Mapa</span></button>
         </nav>
     </aside>
 
-    <main class="flex-1 overflow-y-auto p-10 relative">
+    <main class="flex-1 overflow-y-auto p-10">
         
-        <div id="mensajeExito" class="absolute top-10 left-1/2 -translate-x-1/2 z-50 bg-green-600 text-white px-8 py-4 rounded-full shadow-2xl font-bold animar">
-            ✅ Pedido generado. ¡Abriendo WhatsApp!
-        </div>
-
-        <header class="mb-10">
-            <h2 class="text-3xl font-black text-gray-800 uppercase tracking-tight">Panel de Gestión - Productos María Luisa</h2>
-            <p class="text-gray-500 font-medium italic">Venta de especias y condimentos en Molina de Segura</p>
+        <header class="mb-10 flex justify-between items-end">
+            <div>
+                <h2 class="text-3xl font-black text-gray-800 uppercase tracking-tight">Panel de Control de Ventas</h2>
+                <p class="text-gray-500 font-medium italic">Almacén Central - Molina de Segura</p>
+            </div>
         </header>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card-stats text-center">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Productos</p>
-                <h3 class="text-2xl font-black text-gray-800">+50 Variedades</h3>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border card-stats text-center">
+                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Stock de Red</p>
+                <h3 class="text-2xl font-black text-gray-800">+20 Especias</h3>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card-stats text-center">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Preparación</p>
-                <h3 class="text-2xl font-black text-orange-600">24 Horas</h3>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border card-stats text-center">
+                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Ahorro Tiempo</p>
+                <h3 class="text-2xl font-black text-orange-600">Pedido Directo</h3>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card-stats text-center">
-                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Sostenibilidad</p>
-                <h3 class="text-2xl font-black text-green-600">Eco-Packaging</h3>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border card-stats text-center">
+                <p class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1">Impacto</p>
+                <h3 class="text-2xl font-black text-green-600">Eco-Molina</h3>
             </div>
-            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card-stats text-center flex flex-col items-center">
-                <div class="text-blue-600 font-black text-2xl uppercase">Abierto</div>
+            <div class="bg-white p-6 rounded-2xl shadow-sm border card-stats text-center flex flex-col items-center">
+                <div class="text-blue-600 font-black text-2xl uppercase">ONLINE</div>
                 <p class="text-[8px] font-black text-gray-400 uppercase tracking-widest">Estado del Almacén</p>
             </div>
         </div>
 
-        <section id="tienda" class="seccion activa">
+        <section id="tienda" class="seccion activa fade-in">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-2 space-y-4">
-                    <h3 class="text-xl font-bold mb-4 text-gray-700">Productos Disponibles</h3>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-white p-5 rounded-2xl shadow-sm border flex justify-between items-center hover:border-orange-400 transition">
-                            <div><p class="font-black text-gray-800">Pimentón Dulce</p><p class="text-xs text-gray-400">3,50€ / Bote</p></div>
-                            <button onclick="add('Pimentón', 3.5)" class="bg-orange-50 text-orange-700 px-4 py-2 rounded-xl font-black text-sm hover:bg-orange-100">+ Añadir</button>
+                <div class="lg:col-span-2">
+                    <h3 class="text-xl font-bold mb-6 text-gray-700">Catálogo de Productos</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="contenedor-productos">
                         </div>
-                        <div class="bg-white p-5 rounded-2xl shadow-sm border flex justify-between items-center hover:border-orange-400 transition">
-                            <div><p class="font-black text-gray-800">Azafrán Hebra</p><p class="text-xs text-gray-400">5,00€ / Sobre</p></div>
-                            <button onclick="add('Azafrán', 5.0)" class="bg-orange-50 text-orange-700 px-4 py-2 rounded-xl font-black text-sm hover:bg-orange-100">+ Añadir</button>
-                        </div>
-                        <div class="bg-white p-5 rounded-2xl shadow-sm border flex justify-between items-center hover:border-orange-400 transition">
-                            <div><p class="font-black text-gray-800">Canela Rama</p><p class="text-xs text-gray-400">2,80€ / Paquete</p></div>
-                            <button onclick="add('Canela', 2.8)" class="bg-orange-50 text-orange-700 px-4 py-2 rounded-xl font-black text-sm hover:bg-orange-100">+ Añadir</button>
-                        </div>
-                        <div class="bg-white p-5 rounded-2xl shadow-sm border flex justify-between items-center hover:border-orange-400 transition">
-                            <div><p class="font-black text-gray-800">Pimienta Negra</p><p class="text-xs text-gray-400">2,50€ / Bote</p></div>
-                            <button onclick="add('Pimienta', 2.5)" class="bg-orange-50 text-orange-700 px-4 py-2 rounded-xl font-black text-sm hover:bg-orange-100">+ Añadir</button>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100 h-fit sticky top-4">
-                    <h3 class="text-xs font-black text-gray-400 uppercase tracking-widest mb-6">Tu Cesta</h3>
-                    <div id="cesta" class="text-sm font-medium text-gray-600 mb-8 min-h-[120px] space-y-2 italic py-4 bg-slate-50 rounded-2xl border-dashed border-2 px-4">
-                        Selecciona productos...
+                    <h3 class="text-xs font-black text-gray-400 uppercase tracking-widest mb-6">Tu Pedido</h3>
+                    <div id="cesta" class="text-sm font-medium text-gray-600 mb-8 min-h-[150px] space-y-2 py-4 bg-slate-50 rounded-2xl px-4 border-2 border-dashed">
+                        Tu cesta está vacía
                     </div>
                     <div class="flex justify-between items-center border-t pt-6 mb-8">
-                        <span class="text-xs font-black text-gray-400 uppercase">Total:</span>
+                        <span class="text-xs font-black text-gray-400 uppercase tracking-tighter">Total Pedido:</span>
                         <span class="text-4xl font-black text-gray-800"><span id="total">0.00</span>€</span>
                     </div>
                     <button onclick="enviar()" class="w-full bg-green-600 text-white font-black py-5 rounded-2xl shadow-lg hover:bg-green-700 transition-all uppercase tracking-widest text-sm">
@@ -106,12 +86,15 @@
             </div>
         </section>
 
-        <section id="ubicacion" class="seccion">
-            <div class="bg-white p-10 rounded-[2.5rem] shadow-xl border border-gray-100 text-center">
-                <h3 class="text-2xl font-black mb-4 uppercase">¿Dónde encontrarnos?</h3>
-                <p class="text-gray-500 mb-6 font-bold">📍 Calle Estación (esquina Menéndez Pelayo), Molina de Segura</p>
-                <div class="bg-orange-50 h-64 rounded-3xl flex items-center justify-center border-2 border-dashed border-orange-200">
-                    <p class="text-orange-300 font-black uppercase tracking-widest italic">Mapa del Almacén</p>
+        <section id="ubicacion" class="seccion fade-in">
+            <div class="bg-white p-8 rounded-[2.5rem] shadow-xl border border-gray-100">
+                <h3 class="text-2xl font-black mb-2 uppercase">Ubicación del Almacén</h3>
+                <p class="text-gray-500 mb-6 italic">Calle Estación, 30500 Molina de Segura, Murcia</p>
+                <div class="w-full h-[450px] rounded-3xl overflow-hidden shadow-inner border-4 border-slate-50">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3141.5644837344917!2d-1.2113203234125725!3d38.05710007191494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6380aa86550d95%3A0x6093057ecec920f4!2sC.%20Estaci%C3%B3n%2C%2030500%20Molina%20de%20Segura%2C%20Murcia!5e0!3m2!1ses!2ses!4v1709999999999" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
                 </div>
             </div>
         </section>
@@ -119,34 +102,46 @@
     </main>
 
     <script>
+        const especies = [
+            {n: "Pimentón Dulce", p: 3.50}, {n: "Azafrán Hebra", p: 5.00}, {n: "Canela Rama", p: 2.80},
+            {n: "Pimienta Negra", p: 2.50}, {n: "Orégano Sierra", p: 1.90}, {n: "Clavo Entero", p: 3.20},
+            {n: "Comino Molido", p: 2.10}, {n: "Cúrcuma Pura", p: 2.40}, {n: "Nuez Moscada", p: 3.80},
+            {n: "Jengibre Molido", p: 2.60}, {n: "Ajo en Polvo", p: 1.50}, {n: "Cebolla Deshid.", p: 1.80},
+            {n: "Pimentón Picante", p: 3.50}, {n: "Perejil Seco", p: 1.20}, {n: "Tomillo", p: 1.70},
+            {n: "Romero", p: 1.70}, {n: "Curry Madras", p: 3.10}, {n: "Coriandro", p: 2.30},
+            {n: "Hierbabuena", p: 1.40}, {n: "Anís Estrellado", p: 4.50}
+        ];
+
         let items = []; let total = 0;
-        
+
+        function cargarProductos() {
+            const div = document.getElementById('contenedor-productos');
+            div.innerHTML = especies.map(e => `
+                <div class="bg-white p-4 rounded-2xl shadow-sm border flex justify-between items-center hover:border-orange-400 transition cursor-default">
+                    <div><p class="font-black text-gray-800 text-sm">${e.n}</p><p class="text-[10px] text-gray-400">${e.p.toFixed(2)}€</p></div>
+                    <button onclick="add('${e.n}', ${e.p})" class="bg-orange-50 text-orange-700 px-3 py-1.5 rounded-xl font-black text-[10px] hover:bg-orange-100 uppercase tracking-tighter">+ Añadir</button>
+                </div>
+            `).join('');
+        }
+
         function cambiarSeccion(id) {
             document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
             document.getElementById(id).classList.add('activa');
         }
 
         function add(n, p) {
-            items.push(n); 
-            total += p;
-            const cestaDiv = document.getElementById('cesta');
-            cestaDiv.innerHTML = items.map(i => `<div class='flex justify-between border-b pb-1 border-gray-100'><span>• ${i}</span></div>`).join('');
+            items.push(n); total += p;
+            document.getElementById('cesta').innerHTML = items.map(i => `<div class='flex justify-between border-b pb-1 border-gray-100 text-[11px] font-bold'><span>• ${i}</span></div>`).join('');
             document.getElementById('total').innerText = total.toFixed(2);
         }
 
         function enviar() {
-            if(items.length === 0) return alert("Añade especias al pedido.");
-            
-            const msjExito = document.getElementById('mensajeExito');
-            msjExito.style.display = 'block';
-            
-            let texto = encodeURIComponent("Hola María Luisa, mi pedido es: " + items.join(', ') + ". Total: " + total.toFixed(2) + "€");
-            
-            setTimeout(() => {
-                window.open("https://wa.me/34664417137?text=" + texto);
-                msjExito.style.display = 'none';
-            }, 1500);
+            if(items.length === 0) return alert("Cesta vacía.");
+            let msg = encodeURIComponent("Hola Productos María Luisa, mi pedido: " + items.join(', ') + ". Total: " + total.toFixed(2) + "€");
+            window.open("https://wa.me/34664417137?text=" + msg);
         }
+
+        window.onload = cargarProductos;
     </script>
 </body>
 </html>
