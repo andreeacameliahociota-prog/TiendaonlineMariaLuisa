@@ -9,7 +9,6 @@
         .sidebar-color { background-color: #5d4037; } 
         .seccion { display: none; }
         .seccion.activa { display: block; }
-        .card-stats { border-top: 4px solid #fb923c; }
         .map-container { position: relative; padding-bottom: 75%; height: 0; overflow: hidden; border-radius: 1.5rem; }
         .map-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
     </style>
@@ -18,12 +17,13 @@
 
     <aside class="w-full lg:w-80 sidebar-color text-white flex flex-col p-6 lg:p-8 shadow-2xl lg:h-screen shrink-0">
         <div class="mb-6 lg:mb-10 flex flex-row lg:flex-col items-center justify-between lg:justify-start border-b border-orange-900 pb-4 lg:pb-8">
-            <div class="bg-white p-3 lg:p-5 rounded-2xl shadow-xl">
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#5d4037" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/><circle cx="12" cy="12" r="3" fill="#fb923c" stroke="none"/></svg>
+            <div class="bg-white p-2 rounded-2xl shadow-xl overflow-hidden">
+                <img src="https://raw.githubusercontent.com/andreeacameliahociota-prog/TiendaonlineMariaLuisa/main/WhatsApp%20Image%202026-03-17%20at%2015.58.42.jpeg" 
+                     alt="Logotipo María Luisa" class="w-16 lg:w-32 h-auto object-contain">
             </div>
             <div class="text-right lg:text-center mt-0 lg:mt-4">
                 <h1 class="text-lg lg:text-2xl font-black tracking-tighter uppercase leading-none">M. LUISA</h1>
-                <p class="text-orange-300 text-[8px] lg:text-[9px] tracking-[0.3em] font-bold uppercase">Especias de Calidad</p>
+                <p class="text-orange-300 text-[8px] lg:text-[9px] tracking-[0.3em] font-bold uppercase">Especias de Molina</p>
             </div>
         </div>
         <nav class="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-2 text-[10px] lg:text-sm font-bold">
@@ -35,45 +35,45 @@
 
     <main class="flex-1 overflow-y-auto p-4 lg:p-10">
         <header class="mb-6">
-            <h2 class="text-xl lg:text-3xl font-black text-gray-800 uppercase tracking-tight">Panel de Control</h2>
+            <h2 class="text-xl lg:text-3xl font-black text-gray-800 uppercase tracking-tight">Panel de Gestión</h2>
             <p class="text-xs text-gray-500 font-medium italic">C. Menéndez Pelayo, 23 · Molina de Segura</p>
         </header>
 
         <section id="tienda" class="seccion activa">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="lg:col-span-2 order-2 lg:order-1">
-                    <h3 class="text-lg font-bold mb-4 text-gray-700">🌿 Catálogo Ampliado:</h3>
+                    <h3 class="text-lg font-bold mb-4 text-gray-700">🌿 Selección de Especias:</h3>
                     <div class="grid grid-cols-2 sm:grid-cols-2 gap-2 lg:gap-3" id="contenedor-productos"></div>
                 </div>
                 <div class="order-1 lg:order-2">
                     <div class="bg-white p-6 rounded-[2rem] shadow-xl border border-gray-100 sticky top-4">
-                        <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">Resumen Pedido</h3>
-                        <div id="cesta" class="text-[10px] font-medium text-gray-600 mb-6 min-h-[100px] max-h-[300px] overflow-y-auto space-y-1 py-4 bg-orange-50/50 rounded-2xl px-4 border-2 border-dashed border-orange-200">Selecciona productos...</div>
+                        <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">Pedido Actual</h3>
+                        <div id="cesta" class="text-[10px] font-medium text-gray-600 mb-6 min-h-[100px] max-h-[300px] overflow-y-auto space-y-1 py-4 bg-orange-50/50 rounded-2xl px-4 border-2 border-dashed border-orange-200">Añade productos...</div>
                         <div class="flex justify-between items-center border-t pt-4 mb-6">
                             <span class="text-[10px] font-black text-gray-400 uppercase">Total:</span>
                             <span class="text-2xl lg:text-3xl font-black text-gray-800"><span id="total">0.00</span>€</span>
                         </div>
-                        <button onclick="enviar()" class="w-full bg-green-600 text-white font-black py-4 rounded-xl shadow-lg uppercase text-[10px]">Pedir por WhatsApp 📱</button>
+                        <button onclick="enviarConPago()" class="w-full bg-green-600 text-white font-black py-4 rounded-xl shadow-lg uppercase text-[10px]">Confirmar Pedido 📱</button>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="pagos" class="seccion">
-            <div class="bg-white p-6 lg:p-10 rounded-3xl shadow-xl border border-gray-100 max-w-2xl mx-auto">
-                <h3 class="text-xl lg:text-2xl font-black mb-6 text-center uppercase">Formas de Pago</h3>
-                <div class="grid gap-3">
-                    <div class="border p-4 rounded-xl flex items-center space-x-4"><span class="text-2xl">📲</span><div><p class="font-black text-sm">Bizum</p><p class="text-gray-400 text-[10px]">Al móvil del almacén</p></div></div>
-                    <div class="border p-4 rounded-xl flex items-center space-x-4"><span class="text-2xl">💶</span><div><p class="font-black text-sm">Efectivo</p><p class="text-gray-400 text-[10px]">Pago en mano al recoger</p></div></div>
+            <div class="bg-white p-10 rounded-3xl shadow-xl border border-gray-100 max-w-2xl mx-auto text-center">
+                <h3 class="text-xl font-black mb-6 uppercase">Métodos de Pago</h3>
+                <div class="grid gap-4">
+                    <div class="border-2 border-orange-100 p-6 rounded-2xl"><span class="text-4xl">📲</span><p class="font-black text-lg">BIZUM</p></div>
+                    <div class="border-2 border-orange-100 p-6 rounded-2xl"><span class="text-4xl">💶</span><p class="font-black text-lg">EFECTIVO</p></div>
                 </div>
             </div>
         </section>
 
         <section id="ubicacion" class="seccion">
             <div class="bg-white p-6 rounded-3xl shadow-xl border border-gray-100">
-                <h3 class="text-xl font-black mb-2 uppercase">Recogida en Almacén</h3>
-                <p class="text-xs text-gray-500 mb-6">📍 <b>C. Menéndez Pelayo, 23</b>, 30500 Molina de Segura</p>
-                <div class="map-container shadow-lg"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3141.765662703816!2d-1.2131908!3d38.0524458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd638048f0290519%3A0x6b49048a1639d67!2sCalle%20Men%C3%A9ndez%20Pelayo%2C%2023%2C%2030500%20Molina%20de%20Segura%2C%20Murcia!5e0!3m2!1ses!2ses!4v1710680000000" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
+                <h3 class="text-xl font-black mb-2 uppercase">Ubicación Almacén</h3>
+                <p class="text-xs text-gray-500 mb-6">📍 Calle Menéndez Pelayo, 23, Molina de Segura</p>
+                <div class="map-container shadow-lg"><iframe src="http://googleusercontent.com/maps.google.com/7" style="border:0;" allowfullscreen="" loading="lazy"></iframe></div>
             </div>
         </section>
     </main>
@@ -90,6 +90,7 @@
             {n: "Pebre", p: 2.40}, {n: "Clavo Molido", p: 3.00}, {n: "Mostaza Grano", p: 2.10}, {n: "Eneldo", p: 1.90}
         ];
         let items = []; let total = 0;
+
         function cargarProductos() {
             document.getElementById('contenedor-productos').innerHTML = especies.map(e => `
                 <div class="bg-white p-3 rounded-xl shadow-sm border flex flex-col justify-between h-24">
@@ -97,21 +98,27 @@
                     <button onclick="add('${e.n}', ${e.p})" class="bg-orange-600 text-white py-1 rounded-lg font-black text-[8px] uppercase">Añadir</button>
                 </div>`).join('');
         }
-        function cambiarSeccion(id) {
-            document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
-            document.getElementById(id).classList.add('activa');
-            window.scrollTo(0,0);
-        }
+
         function add(n, p) {
             items.push(n); total += p;
             document.getElementById('cesta').innerHTML = items.map(i => `<div class='border-b pb-1 text-[9px] font-bold'>✔ ${i}</div>`).join('');
             document.getElementById('total').innerText = total.toFixed(2);
         }
-        function enviar() {
+
+        function enviarConPago() {
             if(items.length === 0) return alert("Cesta vacía.");
-            let msg = encodeURIComponent("Hola Productos M. Luisa, mi pedido: " + items.join(', ') + ". Total: " + total.toFixed(2) + "€. ¿Me confirmáis?");
-            window.open("https://wa.me/34664417137?text=" + msg);
+            let pago = prompt("¿Cómo vas a pagar? (Bizum o Efectivo)");
+            if (!pago) return alert("Indica el método de pago para avisar al vendedor.");
+            
+            let msg = "Hola Productos M. Luisa! Mi pedido: " + items.join(', ') + ". Total: " + total.toFixed(2) + "€. Pago mediante: " + pago.toUpperCase();
+            window.open("https://wa.me/34664417137?text=" + encodeURIComponent(msg));
         }
+
+        function cambiarSeccion(id) {
+            document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
+            document.getElementById(id).classList.add('activa');
+        }
+
         window.onload = cargarProductos;
     </script>
 </body>
