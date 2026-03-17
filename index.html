@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Productos María Luisa - Almacén</title>
+    <title>Productos María Luisa - Almacén de Especias</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .sidebar-color { background-color: #5d4037; } 
@@ -19,15 +19,14 @@
     <aside class="w-full lg:w-80 sidebar-color text-white flex flex-col p-6 lg:p-8 shadow-2xl lg:h-screen lg:sticky lg:top-0 shrink-0">
         <div class="flex flex-row lg:flex-col items-center justify-between lg:justify-start border-b border-orange-900 pb-4 lg:pb-8">
             <div class="bg-white p-2 rounded-2xl shadow-xl flex items-center justify-center w-24 h-24 lg:w-32 lg:h-32 overflow-hidden">
-                <img src="https://raw.githubusercontent.com/andreeacameliahociota-prog/TiendaonlineMariaLuisa/main/WhatsApp%20Image%202026-03-17%20at%2015.58.42.jpeg" 
-                     alt="M. Luisa" class="img-logo" 
-                     onerror="this.src='https://cdn-icons-png.flaticon.com/512/5223/5223048.png'">
+                <img src="https://raw.githubusercontent.com/andreeacameliahociota-prog/TiendaonlineMariaLuisa/main/pimiento-logo.png" 
+                     alt="M. Luisa" class="img-logo">
             </div>
             <div class="text-right lg:text-center mt-0 lg:mt-4 ml-4 lg:ml-0">
                 <h1 class="text-lg lg:text-2xl font-black uppercase leading-none">M. LUISA</h1>
                 <p class="text-orange-300 text-[9px] font-bold uppercase mb-2">Especias de Molina</p>
                 <div class="bg-black/20 p-2 rounded-lg">
-                    <p class="text-[8px] font-bold text-orange-100">🕒 09:00 - 14:00</p>
+                    <p class="text-[8px] font-bold text-orange-100 uppercase">🕒 09:00 - 14:00</p>
                 </div>
             </div>
         </div>
@@ -41,20 +40,20 @@
 
     <main class="flex-1 p-4 lg:p-10">
         <header class="mb-6">
-            <h2 class="text-xl lg:text-3xl font-black text-gray-800 uppercase">Venta Directa</h2>
-            <p class="text-xs text-gray-500 italic">C. Menéndez Pelayo, 23 · Molina de Segura</p>
+            <h2 class="text-xl lg:text-3xl font-black text-gray-800 uppercase tracking-tight">Venta Directa</h2>
+            <p class="text-xs text-gray-500 font-medium italic">Calle Menéndez Pelayo, 23 · Molina de Segura</p>
         </header>
 
         <section id="tienda" class="seccion activa">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="order-1 lg:order-2">
                     <div class="bg-white p-6 rounded-[2rem] shadow-xl border border-gray-100 lg:sticky lg:top-10">
-                        <h3 class="text-[10px] font-black text-gray-400 uppercase mb-4">Tu Pedido</h3>
+                        <h3 class="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-4">Tu Pedido</h3>
                         <div id="cesta" class="text-[10px] font-medium text-gray-600 mb-6 min-h-[60px] max-h-[150px] overflow-y-auto space-y-1 py-4 bg-orange-50/50 rounded-2xl px-4 border-2 border-dashed border-orange-200">Añade productos...</div>
                         <div class="flex justify-between items-center border-t pt-4 mb-6">
                             <span class="text-2xl font-black text-gray-800"><span id="total">0.00</span>€</span>
                         </div>
-                        <button onclick="enviarPedidoFinal()" class="w-full bg-green-600 text-white font-black py-4 rounded-xl shadow-lg uppercase text-xs">Enviar Pedido 📱</button>
+                        <button onclick="enviarPedidoFinal()" class="w-full bg-green-600 text-white font-black py-4 rounded-xl shadow-lg uppercase text-xs">Enviar Pedido por WhatsApp 📱</button>
                     </div>
                 </div>
 
@@ -76,10 +75,10 @@
 
         <section id="ubicacion" class="seccion">
             <div class="bg-white p-6 rounded-3xl shadow-xl border border-gray-100">
-                <h3 class="text-xl font-black mb-2 uppercase">Ubicación</h3>
-                <p class="text-xs text-gray-500 mb-6">📍 Calle Menéndez Pelayo, 23</p>
+                <h3 class="text-xl font-black mb-2 uppercase">Ubicación del Almacén</h3>
+                <p class="text-xs text-gray-500 mb-6">📍 Calle Menéndez Pelayo, 23, Molina de Segura</p>
                 <div class="map-container shadow-lg">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3141.763137837012!2d-1.2117564!3d38.0525626!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63806a6b840001%3A0x6d2c4b8b4b4b4b4b!2sCalle%20Men%C3%A9ndez%20Pelayo%2C%2023%2C%2030500%20Molina%20de%20Segura%2C%20Murcia!5e0!3m2!1ses!2ses!4v1710680000000" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    <iframe src="http://googleusercontent.com/maps.google.com/7" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </div>
             </div>
         </section>
@@ -113,8 +112,8 @@
         }
 
         function enviarPedidoFinal() {
-            if(items.length === 0) return alert("Cesta vacía.");
-            let pago = prompt("¿Pago por Bizum o Efectivo?");
+            if(items.length === 0) return alert("Por favor, añade productos al pedido.");
+            let pago = prompt("¿Cómo realizarás el pago? (Escribe: Bizum o Efectivo)");
             if (!pago) return;
             let texto = "¡Hola María Luisa! Mi pedido: " + items.join(', ') + ". Total: " + total.toFixed(2) + "€. Pago: " + pago.toUpperCase();
             window.open("https://wa.me/34664417137?text=" + encodeURIComponent(texto));
