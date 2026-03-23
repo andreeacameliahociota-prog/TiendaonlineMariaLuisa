@@ -11,7 +11,8 @@
         .seccion.activa { display: block; }
         .logo-circle { width: 80px; height: 80px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #a16207; margin-bottom: 1rem; }
         .logo-text { font-size: 28px; font-weight: 900; color: #a16207; }
-        .product-img { width: 100%; height: 110px; object-fit: cover; border-radius: 0.75rem; background-color: #f3f4f6; }
+        .product-img { width: 100%; height: 100px; object-fit: cover; border-radius: 0.5rem; background-color: #f3f4f6; }
+        .map-container { width: 100%; height: 350px; border-radius: 1.5rem; overflow: hidden; border: 2px solid #ddd; }
     </style>
 </head>
 <body class="bg-gray-100 flex flex-col lg:flex-row min-h-screen">
@@ -24,7 +25,7 @@
         </div>
         
         <nav class="space-y-2 mb-6">
-            <button onclick="cambiarSeccion('tienda')" class="w-full text-left p-3 hover:bg-orange-900 rounded-lg font-bold text-sm transition">🛒 Catálogo</button>
+            <button onclick="cambiarSeccion('tienda')" class="w-full text-left p-3 hover:bg-orange-900 rounded-lg font-bold text-sm transition">🛒 Ver Catálogo</button>
             <button onclick="cambiarSeccion('ubicacion')" class="w-full text-left p-3 hover:bg-orange-900 rounded-lg font-bold text-sm transition">📍 Ubicación</button>
         </nav>
 
@@ -47,25 +48,36 @@
         <section id="tienda" class="seccion activa">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="lg:col-span-2">
-                    <h3 class="font-bold text-gray-700 mb-4 uppercase text-sm">🌿 Catálogo (32 Especias)</h3>
+                    <h3 class="font-bold text-gray-700 mb-4 uppercase text-sm">🌿 Catálogo Completo (32 Variedades)</h3>
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="contenedor-productos"></div>
                 </div>
 
                 <div class="lg:sticky lg:top-8 h-fit">
                     <div class="bg-white p-6 rounded-3xl shadow-xl border border-gray-100 text-center">
                         <h3 class="text-[10px] font-black uppercase text-gray-400 mb-4">Tu Pedido</h3>
-                        <div id="cesta" class="text-[10px] text-gray-500 mb-6 bg-gray-50 p-4 rounded-xl min-h-[80px]">Tu cesta está vacía</div>
+                        <div id="cesta" class="text-[10px] text-gray-500 mb-6 bg-gray-50 p-4 rounded-xl min-h-[80px]">Vacío</div>
                         <div class="text-3xl font-black text-gray-800 mb-6"><span id="total">0.00</span>€</div>
-                        <button onclick="enviarWhatsApp()" class="w-full bg-green-600 text-white font-bold py-4 rounded-2xl shadow-lg hover:bg-green-700 transition uppercase text-xs">Confirmar Pedido 📱</button>
+                        <button onclick="enviarWhatsApp()" class="w-full bg-green-600 text-white font-bold py-4 rounded-2xl shadow-lg hover:bg-green-700 transition uppercase text-xs">Confirmar por WhatsApp 📱</button>
                     </div>
                 </div>
             </div>
         </section>
 
         <section id="ubicacion" class="seccion">
-            <div class="bg-white p-8 rounded-3xl shadow-lg">
-                <h3 class="font-bold text-orange-800 uppercase mb-2">📍 Punto de Venta</h3>
-                <p class="text-gray-600">Almacén: Molina de Segura - Calle Menéndez Pelayo, 23</p>
+            <div class="bg-white p-8 rounded-3xl shadow-xl">
+                <h3 class="font-black text-orange-800 uppercase mb-4 text-xl">📍 Cómo llegar</h3>
+                <p class="text-gray-600 mb-6">Estamos en el corazón de Molina de Segura:<br>
+                <strong>Calle Menéndez Pelayo, 23, 30500 Molina de Segura, Murcia</strong></p>
+                
+                <div class="map-container shadow-inner">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3141.439832261763!2d-1.2131924234473347!3d38.05018697191771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd63817929294541%3A0xad72c72748d4dc1e!2sC.%20Men%C3%A9ndez%20Pelayo%2C%2023%2C%2030500%20Molina%20de%20Segura%2C%20Murcia!5e0!3m2!1ses!2ses!4v1710785000000!5m2!1ses!2ses" 
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="mt-4 p-4 bg-orange-50 rounded-xl border border-orange-100">
+                    <p class="text-xs text-orange-800 italic">"Horario comercial de Lunes a Viernes. Entregas en Molina en menos de 24h."</p>
+                </div>
             </div>
         </section>
     </main>
@@ -77,33 +89,33 @@
             {n: "Azafrán Hebra", p: 5.50, img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400"},
             {n: "Clavo de Olor", p: 3.20, img: "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?w=400"},
             {n: "Comino Grano", p: 2.10, img: "https://images.unsplash.com/photo-1615484477778-ca3b77942253?w=400"},
-            {n: "Cúrcuma", p: 2.40, img: "https://images.unsplash.com/photo-1615485500704-8e990f3900f7?w=400"},
+            {n: "Cúrcuma Pura", p: 2.40, img: "https://images.unsplash.com/photo-1615485500704-8e990f3900f7?w=400"},
             {n: "Jengibre", p: 2.60, img: "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=400"},
             {n: "Orégano", p: 1.90, img: "https://images.unsplash.com/photo-1608797178974-15b35a643b6b?w=400"},
             {n: "Pimienta Negra", p: 2.50, img: "https://images.unsplash.com/photo-1509358271058-acd22cc93898?w=400"},
             {n: "Romero", p: 1.70, img: "https://images.unsplash.com/photo-1528133080231-186b6680a6b7?w=400"},
             {n: "Tomillo", p: 1.70, img: "https://images.unsplash.com/photo-1518719662051-7871b6d1947b?w=400"},
-            {n: "Laurel", p: 1.50, img: "https://images.unsplash.com/photo-1518929112282-e304899f8d18?w=400"},
             {n: "Anís Estrellado", p: 4.50, img: "https://images.unsplash.com/photo-1601004890684-d8cbf393f922?w=400"},
             {n: "Perejil", p: 1.20, img: "https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=400"},
-            {n: "Curry Madras", p: 3.10, img: "https://images.unsplash.com/photo-1584436100690-369403889601?w=400"},
+            {n: "Curry", p: 3.10, img: "https://images.unsplash.com/photo-1584436100690-369403889601?w=400"},
             {n: "Nuez Moscada", p: 3.80, img: "https://images.unsplash.com/photo-1532187863486-abf9d3a3522a?w=400"},
             {n: "Ajo Molido", p: 1.50, img: "https://images.unsplash.com/photo-1620189531100-348633e9d8e7?w=400"},
             {n: "Cayena", p: 2.20, img: "https://images.unsplash.com/photo-1614734808119-0b7a83d1c166?w=400"},
             {n: "Cebolla Polvo", p: 1.80, img: "https://images.pexels.com/photos/2363345/pexels-photo-2363345.jpeg?auto=compress&cs=tinysrgb&w=400"},
             {n: "Hierbabuena", p: 1.40, img: "https://images.unsplash.com/photo-1616260749007-8899ac405e32?w=400"},
-            {n: "Coriandro", p: 2.30, img: "https://images.unsplash.com/photo-1624454002302-36b824d7911c?w=400"},
-            {n: "Eneldo", p: 1.90, img: "https://images.unsplash.com/photo-1596452292837-183008064402?w=400"},
-            {n: "Mostaza Grano", p: 2.10, img: "https://images.unsplash.com/photo-1615485500704-8e990f3900f7?w=400"},
-            {n: "Vainilla Rama", p: 6.00, img: "https://images.unsplash.com/photo-1596716766436-1216a67f62e8?w=400"},
             {n: "Sal Himalaya", p: 2.10, img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400"},
-            {n: "Ras el Hanout", p: 3.50, img: "https://images.unsplash.com/photo-1584436100690-369403889601?w=400"},
-            {n: "Hierbas Provenza", p: 1.70, img: "https://images.pexels.com/photos/1435862/pexels-photo-1435862.jpeg?auto=compress&cs=tinysrgb&w=400"},
-            {n: "Comino Molido", p: 2.10, img: "https://images.pexels.com/photos/4199120/pexels-photo-4199120.jpeg?auto=compress&cs=tinysrgb&w=400"},
-            {n: "Pebre", p: 2.40, img: "https://images.pexels.com/photos/1435858/pexels-photo-1435858.jpeg?auto=compress&cs=tinysrgb&w=400"},
             {n: "Canela Rama", p: 2.80, img: "https://images.pexels.com/photos/4033296/pexels-photo-4033296.jpeg?auto=compress&cs=tinysrgb&w=400"},
+            {n: "Laurel", p: 1.50, img: "https://images.pexels.com/photos/4113061/pexels-photo-4113061.jpeg?auto=compress&cs=tinysrgb&w=400"},
+            {n: "Mostaza", p: 2.10, img: "https://images.pexels.com/photos/131014/pexels-photo-131014.jpeg?auto=compress&cs=tinysrgb&w=400"},
+            {n: "Vainilla", p: 6.00, img: "https://images.pexels.com/photos/4199124/pexels-photo-4199124.jpeg?auto=compress&cs=tinysrgb&w=400"},
+            {n: "Salvia", p: 1.80, img: "https://images.pexels.com/photos/3375118/pexels-photo-3375118.jpeg?auto=compress&cs=tinysrgb&w=400"},
+            {n: "Eneldo", p: 1.90, img: "https://images.pexels.com/photos/1435859/pexels-photo-1435859.jpeg?auto=compress&cs=tinysrgb&w=400"},
+            {n: "Coriandro", p: 2.30, img: "https://images.pexels.com/photos/3375116/pexels-photo-3375116.jpeg?auto=compress&cs=tinysrgb&w=400"},
+            {n: "Pebre", p: 2.40, img: "https://images.pexels.com/photos/1435858/pexels-photo-1435858.jpeg?auto=compress&cs=tinysrgb&w=400"},
+            {n: "Ras el Hanout", p: 3.50, img: "https://images.pexels.com/photos/1435860/pexels-photo-1435860.jpeg?auto=compress&cs=tinysrgb&w=400"},
             {n: "Sal Ahumada", p: 2.10, img: "https://images.pexels.com/photos/932588/pexels-photo-932588.jpeg?auto=compress&cs=tinysrgb&w=400"},
-            {n: "Salvia", p: 1.80, img: "https://images.pexels.com/photos/3375118/pexels-photo-3375118.jpeg?auto=compress&cs=tinysrgb&w=400"}
+            {n: "Hierbas Provenza", p: 1.70, img: "https://images.pexels.com/photos/1435862/pexels-photo-1435862.jpeg?auto=compress&cs=tinysrgb&w=400"},
+            {n: "Cardamomo", p: 4.20, img: "https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=400"}
         ];
         
         let items = []; let total = 0;
@@ -130,10 +142,10 @@
             const nom = document.getElementById('nombre-cli').value;
             const tel = document.getElementById('tel-cli').value;
             if(!nom || !tel) return alert("Por favor, rellena tu nombre y teléfono.");
-            if(items.length === 0) return alert("Añade especias a la cesta primero.");
+            if(items.length === 0) return alert("Añade especias a la cesta.");
             const pago = prompt("¿Pago por Bizum o Efectivo?");
             if(!pago) return;
-            let m = `*PEDIDO PRODUCTOS MARÍA LUISA*\n*Cliente:* ${nom}\n*Tel:* ${tel}\n\n*Productos:*\n- ${items.join('\n- ')}\n\n*Total:* ${total.toFixed(2)}€\n*Pago:* ${pago.toUpperCase()}`;
+            let m = `*PEDIDO PRODUCTOS MARÍA LUISA*\n*Cliente:* ${nom}\n*Tel:* ${tel}\n\n*Pedido:*\n- ${items.join('\n- ')}\n\n*Total:* ${total.toFixed(2)}€\n*Pago:* ${pago.toUpperCase()}`;
             window.open("https://wa.me/34664417137?text=" + encodeURIComponent(m));
         }
 
