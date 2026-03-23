@@ -11,149 +11,100 @@
         .seccion.activa { display: block; }
         .logo-circle { width: 80px; height: 80px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 3px solid #a16207; margin-bottom: 1rem; }
         .logo-text { font-size: 28px; font-weight: 900; color: #a16207; }
-        /* Imagen ajustada para formato profesional de catálogo */
-        .product-img { width: 100%; height: 120px; object-fit: cover; border-radius: 0.75rem; background-color: #f3f4f6; border: 1px solid #e5e7eb; }
+
+        .product-img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            background-color: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            filter: contrast(1.05) saturate(1.05);
+        }
     </style>
 </head>
 <body class="bg-gray-100 flex flex-col lg:flex-row min-h-screen font-sans">
 
-    <aside class="w-full lg:w-72 sidebar-color text-white p-6 flex flex-col shadow-xl lg:h-screen lg:sticky lg:top-0 shrink-0">
-        <div class="flex flex-col items-center border-b border-orange-900 pb-4 mb-6 text-center">
-            <div class="logo-circle"><span class="logo-text">PML</span></div>
-            <h1 class="text-lg font-bold uppercase leading-tight">Productos María Luisa</h1>
-            <p class="text-orange-300 text-[10px] uppercase tracking-widest mt-1">Especias de Molina</p>
-        </div>
-        
-        <nav class="space-y-2 mb-6">
-            <button onclick="cambiarSeccion('tienda')" class="w-full text-left p-3 hover:bg-orange-900 rounded-lg font-bold text-sm transition flex items-center gap-2">🛒 <span>Catálogo Mayorista</span></button>
-            <button onclick="cambiarSeccion('ubicacion')" class="w-full text-left p-3 hover:bg-orange-900 rounded-lg font-bold text-sm transition flex items-center gap-2">📍 <span>Ubicación Almacén</span></button>
-        </nav>
+<aside class="w-full lg:w-72 sidebar-color text-white p-6 flex flex-col shadow-xl lg:h-screen lg:sticky lg:top-0 shrink-0">
+    <div class="flex flex-col items-center border-b border-orange-900 pb-4 mb-6 text-center">
+        <div class="logo-circle"><span class="logo-text">PML</span></div>
+        <h1 class="text-lg font-bold uppercase leading-tight">Productos María Luisa</h1>
+        <p class="text-orange-300 text-[10px] uppercase tracking-widest mt-1">Especias de Molina</p>
+    </div>
 
-        <div class="mt-auto bg-black/20 p-4 rounded-lg text-[10px] border border-orange-800">
-            <p class="font-bold text-orange-200 uppercase mb-1">🚚 Política de Envíos:</p>
-            <p>Molina de Segura: **GRATIS**</p>
-            <p>Resto de España: Consultar tarifa</p>
-        </div>
-    </aside>
+    <nav class="space-y-2 mb-6">
+        <button onclick="cambiarSeccion('tienda')" class="w-full text-left p-3 hover:bg-orange-900 rounded-lg font-bold text-sm">🛒 Catálogo</button>
+        <button onclick="cambiarSeccion('ubicacion')" class="w-full text-left p-3 hover:bg-orange-900 rounded-lg font-bold text-sm">📍 Ubicación</button>
+    </nav>
+</aside>
 
-    <main class="flex-1 p-4 lg:p-8">
-        <div class="bg-white p-6 rounded-2xl shadow-md mb-6 border-l-4 border-orange-500">
-            <h2 class="text-xs font-black uppercase text-gray-500 mb-4 tracking-tighter">📝 Datos del Cliente / Pedido</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <input type="text" id="nombre-cli" placeholder="Nombre completo o Empresa" class="p-3 border rounded-xl w-full text-sm outline-none focus:ring-2 focus:ring-orange-400">
-                <input type="tel" id="tel-cli" placeholder="Teléfono de contacto" class="p-3 border rounded-xl w-full text-sm outline-none focus:ring-2 focus:ring-orange-400">
-            </div>
-        </div>
+<main class="flex-1 p-6">
+<section id="tienda" class="seccion activa">
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="contenedor-productos"></div>
+</section>
 
-        <section id="tienda" class="seccion activa">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <div class="lg:col-span-2 order-2 lg:order-1">
-                    <h3 class="font-bold text-gray-700 mb-4 uppercase text-sm">🌿 Tarifario de Especias Secas</h3>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4" id="contenedor-productos"></div>
-                </div>
+<section id="ubicacion" class="seccion">
+    <div class="bg-white p-8 rounded-3xl shadow-xl text-center">
+        <h3 class="font-black text-orange-800 uppercase mb-4 text-xl">📍 Almacén</h3>
+        <p>Calle Menéndez Pelayo, 23<br>Molina de Segura</p>
+    </div>
+</section>
+</main>
 
-                <div class="order-1 lg:order-2 lg:sticky lg:top-8 h-fit">
-                    <div class="bg-white p-6 rounded-3xl shadow-xl border border-gray-100 text-center">
-                        <h3 class="text-[10px] font-black uppercase text-gray-400 mb-4 tracking-widest">Resumen</h3>
-                        <div id="cesta" class="text-[10px] text-gray-500 mb-6 bg-gray-50 p-4 rounded-xl min-h-[100px] space-y-1">Selecciona productos...</div>
-                        <div class="text-3xl font-black text-gray-800 mb-6"><span id="total">0.00</span>€</div>
-                        <button onclick="enviarWhatsApp()" class="w-full bg-green-600 text-white font-bold py-4 rounded-2xl shadow-lg hover:bg-green-700 transition uppercase text-xs tracking-wider">Enviar Pedido Mayorista 📱</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+<script>
+const especies = [
+{n:"Canela Molida",p:2.50,img:"https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=400"},
+{n:"Pimentón Dulce",p:3.50,img:"https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=400"},
+{n:"Azafrán Hebra",p:5.50,img:"https://images.unsplash.com/photo-1587735243615-c03f25aaff15?w=400"},
+{n:"Clavo de Olor",p:3.20,img:"https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400"},
+{n:"Comino Grano",p:2.10,img:"https://images.unsplash.com/photo-1603048297172-c92544798d5a?w=400"},
+{n:"Cúrcuma",p:2.40,img:"https://images.unsplash.com/photo-1615485500704-8e990f3900f7?w=400"},
+{n:"Jengibre",p:2.60,img:"https://images.pexels.com/photos/4199131/pexels-photo-4199131.jpeg?w=400"},
+{n:"Orégano Sierra",p:1.90,img:"https://images.unsplash.com/photo-1608797178974-15b35a643b6b?w=400"},
+{n:"Pimienta Negra",p:2.50,img:"https://images.unsplash.com/photo-1509358271058-acd22cc93898?w=400"},
+{n:"Pimienta Blanca",p:2.70,img:"https://images.pexels.com/photos/4199133/pexels-photo-4199133.jpeg?w=400"},
+{n:"Romero Seco",p:1.70,img:"https://images.unsplash.com/photo-1528133080231-186b6680a6b7?w=400"},
+{n:"Tomillo Hojas",p:1.70,img:"https://images.unsplash.com/photo-1518719662051-7871b6d1947b?w=400"},
+{n:"Laurel Hojas",p:1.50,img:"https://images.pexels.com/photos/4113061/pexels-photo-4113061.jpeg?w=400"},
+{n:"Canela en Rama",p:2.80,img:"https://images.pexels.com/photos/4033296/pexels-photo-4033296.jpeg?w=400"},
+{n:"Curry Madras",p:3.10,img:"https://images.unsplash.com/photo-1584436100690-369403889601?w=400"},
+{n:"Nuez Moscada",p:3.80,img:"https://images.unsplash.com/photo-1604908176997-4311b63a0b4c?w=400"},
+{n:"Perejil Seco",p:1.20,img:"https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?w=400"},
+{n:"Ajo Molido",p:1.50,img:"https://images.unsplash.com/photo-1613758235414-e8e4b5b0b5c2?w=400"},
+{n:"Cayena Guindilla",p:2.20,img:"https://images.unsplash.com/photo-1614734808119-0b7a83d1c166?w=400"},
+{n:"Sal Himalaya",p:2.10,img:"https://images.unsplash.com/photo-1580910051074-3eb694886505?w=400"},
+{n:"Ras el Hanout",p:3.50,img:"https://images.pexels.com/photos/1435860/pexels-photo-1435860.jpeg?w=400"},
+{n:"Hierbabuena Seca",p:1.40,img:"https://images.unsplash.com/photo-1616260749007-8899ac405e32?w=400"},
+{n:"Cebolla Polvo",p:1.80,img:"https://images.pexels.com/photos/4199130/pexels-photo-4199130.jpeg?w=400"},
+{n:"Coriando",p:2.30,img:"https://images.pexels.com/photos/3375116/pexels-photo-3375116.jpeg?w=400"},
+{n:"Eneldo Seco",p:1.90,img:"https://images.pexels.com/photos/1435859/pexels-photo-1435859.jpeg?w=400"},
+{n:"Mostaza Grano",p:2.10,img:"https://images.pexels.com/photos/131014/pexels-photo-131014.jpeg?w=400"},
+{n:"Hierbas Provenzas",p:1.70,img:"https://images.pexels.com/photos/1435862/pexels-photo-1435862.jpeg?w=400"},
+{n:"Vainilla Rama",p:6.00,img:"https://images.pexels.com/photos/4199124/pexels-photo-4199124.jpeg?w=400"},
+{n:"Sal Ahumada",p:2.10,img:"https://images.pexels.com/photos/932588/pexels-photo-932588.jpeg?w=400"},
+{n:"Salvia Seca",p:1.80,img:"https://images.pexels.com/photos/3375118/pexels-photo-3375118.jpeg?w=400"},
+{n:"Comino Molido",p:2.10,img:"https://images.pexels.com/photos/4199120/pexels-photo-4199120.jpeg?w=400"}
+];
 
-        <section id="ubicacion" class="seccion">
-            <div class="bg-white p-8 rounded-3xl shadow-xl text-center">
-                <h3 class="font-black text-orange-800 uppercase mb-4 text-xl">📍 Punto de Recogida y Almacén</h3>
-                <p class="text-gray-600">Calle Menéndez Pelayo, 23<br>30500 Molina de Segura, Murcia</p>
-            </div>
-        </section>
-    </main>
+function cargar(){
+const cont=document.getElementById('contenedor-productos');
+especies.forEach(e=>{
+cont.innerHTML+=`
+<div class="bg-white p-3 rounded-2xl shadow-sm">
+<img src="${e.img}" class="product-img mb-2">
+<h4 class="text-xs font-bold">${e.n}</h4>
+<p class="text-orange-600 font-bold">${e.p}€</p>
+</div>`
+})
+}
 
-    <script>
-        // LISTA DE 32 ESPECIAS CON FOTOS ESTRICTAMENTE SECAS (UNSPLASH/PEXELS)
-        const especies = [
-            {n: "Canela Molida", p: 2.50, img: "https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=400"},
-            {n: "Pimentón Dulce", p: 3.50, img: "https://images.unsplash.com/photo-1512132411229-c30391241dd8?w=400"},
-            {n: "Azafrán Hebra", p: 5.50, img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400"},
-            {n: "Clavo de Olor", p: 3.20, img: "https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?w=400"},
-            {n: "Comino Grano", p: 2.10, img: "https://images.unsplash.com/photo-1615484477778-ca3b77942253?w=400"},
-            {n: "Cúrcuma", p: 2.40, img: "https://images.unsplash.com/photo-1615485500704-8e990f3900f7?w=400"},
-            {n: "Jengibre Molido", p: 2.60, img: "https://images.pexels.com/photos/1393382/pexels-photo-1393382.jpeg?w=400"}, // Imagen de jengibre seco/molido
-            {n: "Orégano Sierra", p: 1.90, img: "https://images.unsplash.com/photo-1608797178974-15b35a643b6b?w=400"},
-            {n: "Pimienta Negra", p: 2.50, img: "https://images.unsplash.com/photo-1509358271058-acd22cc93898?w=400"},
-            {n: "Pimienta Blanca", p: 2.70, img: "https://images.pexels.com/photos/4199131/pexels-photo-4199131.jpeg?w=400"},
-            {n: "Romero Seco", p: 1.70, img: "https://images.unsplash.com/photo-1528133080231-186b6680a6b7?w=400"},
-            {n: "Tomillo Hojas", p: 1.70, img: "https://images.unsplash.com/photo-1518719662051-7871b6d1947b?w=400"},
-            {n: "Laurel Hojas", p: 1.50, img: "https://images.pexels.com/photos/4113061/pexels-photo-4113061.jpeg?w=400"},
-            {n: "Canela en Rama", p: 2.80, img: "https://images.pexels.com/photos/4033296/pexels-photo-4033296.jpeg?w=400"},
-            {n: "Curry Madras", p: 3.10, img: "https://images.unsplash.com/photo-1584436100690-369403889601?w=400"},
-            {n: "Nuez Moscada", p: 3.80, img: "https://images.unsplash.com/photo-1532187863486-abf9d3a3522a?w=400"},
-            {n: "Perejil Seco", p: 1.20, img: "https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?w=400"},
-            {n: "Ajo Molido", p: 1.50, img: "https://images.unsplash.com/photo-1620189531100-348633e9d8e7?w=400"},
-            {n: "Cayena Guindilla", p: 2.20, img: "https://images.unsplash.com/photo-1614734808119-0b7a83d1c166?w=400"},
-            {n: "Sal Himalaya", p: 2.10, img: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=400"},
-            {n: "Ras el Hanout", p: 3.50, img: "https://images.pexels.com/photos/1435860/pexels-photo-1435860.jpeg?w=400"},
-            {n: "Hierbabuena Seca", p: 1.40, img: "https://images.unsplash.com/photo-1616260749007-8899ac405e32?w=400"},
-            {n: "Cebolla Polvo", p: 1.80, img: "https://images.pexels.com/photos/2363345/pexels-photo-2363345.jpeg?w=400"},
-            {n: "Coriando", p: 2.30, img: "https://images.pexels.com/photos/3375116/pexels-photo-3375116.jpeg?w=400"},
-            {n: "Eneldo Seco", p: 1.90, img: "https://images.pexels.com/photos/1435859/pexels-photo-1435859.jpeg?w=400"},
-            {n: "Mostaza Grano", p: 2.10, img: "https://images.pexels.com/photos/131014/pexels-photo-131014.jpeg?w=400"},
-            {n: "Hierbas Provenzas", p: 1.70, img: "https://images.pexels.com/photos/1435862/pexels-photo-1435862.jpeg?w=400"},
-            {n: "Vainilla Rama", p: 6.00, img: "https://images.pexels.com/photos/4199124/pexels-photo-4199124.jpeg?w=400"},
-            {n: "Sal Ahumada", p: 2.10, img: "https://images.pexels.com/photos/932588/pexels-photo-932588.jpeg?w=400"},
-            {n: "Salvia Seca", p: 1.80, img: "https://images.pexels.com/photos/3375118/pexels-photo-3375118.jpeg?w=400"},
-            {n: "Comino Molido", p: 2.10, img: "https://images.pexels.com/photos/4199120/pexels-photo-4199120.jpeg?w=400"},
-            {n: "Cardamomo", p: 4.20, img: "https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=400"} // Añadida para completar 32
-        ];
-        
-        let items = []; let total = 0;
+function cambiarSeccion(id){
+document.querySelectorAll('.seccion').forEach(s=>s.classList.remove('activa'));
+document.getElementById(id).classList.add('activa');
+}
 
-        function cargar() {
-            const contenedor = document.getElementById('contenedor-productos');
-            // Limpiar contenido previo para asegurar carga fresca
-            contenedor.innerHTML = ''; 
-            
-            especies.forEach(e => {
-                contenedor.innerHTML += `
-                    <div class="bg-white p-3 rounded-2xl shadow-sm border border-transparent hover:border-orange-500 transition flex flex-col h-full overflow-hidden">
-                        <img src="${e.img}" alt="${e.n}" class="product-img mb-2 shadow-inner">
-                        <h4 class="font-bold text-[10px] text-gray-800 uppercase leading-tight flex-grow">${e.n}</h4>
-                        <div class="flex justify-between items-center mt-2 pt-2 border-t border-gray-100">
-                            <span class="text-orange-600 font-bold text-xs">${e.p.toFixed(2)}€</span>
-                            <button onclick="add('${e.n}', ${e.p})" class="bg-orange-600 text-white px-3 py-1 rounded-lg text-[8px] font-black uppercase hover:bg-orange-700 transition">Añadir</button>
-                        </div>
-                    </div>`;
-            });
-        }
+window.onload=cargar;
+</script>
 
-        function add(n, p) {
-            items.push(n); total += p;
-            const cestaDiv = document.getElementById('cesta');
-            if(items.length === 1) cestaDiv.innerHTML = ''; // Limpiar mensaje inicial
-            cestaDiv.innerHTML += `<p class="border-b border-gray-100 pb-1 text-[8px] font-bold uppercase text-gray-700 flex items-center gap-1">✔ <span>${n}</span></p>`;
-            document.getElementById('total').innerText = total.toFixed(2);
-        }
-
-        function enviarWhatsApp() {
-            const nom = document.getElementById('nombre-cli').value;
-            const tel = document.getElementById('tel-cli').value;
-            if(!nom || !tel) return alert("Por favor, rellena tu nombre/empresa y teléfono.");
-            if(items.length === 0) return alert("Tu cesta está vacía. Añade productos.");
-            
-            const pago = prompt("¿Cómo prefieres pagar? (Bizum o Efectivo)");
-            if(!pago) return;
-
-            let m = `*PEDIDO MAYORISTA - PRODUCTOS M. LUISA*\n\n*Cliente:* ${nom}\n*Teléfono:* ${tel}\n\n*Productos:*\n- ${items.join('\n- ')}\n\n*Total:* ${total.toFixed(2)}€\n*Pago:* ${pago.toUpperCase()}\n\nGastos de envío a Molina GRATIS. Resto a consultar.`;
-            window.open("https://wa.me/34664417137?text=" + encodeURIComponent(m));
-        }
-
-        function cambiarSeccion(id) {
-            document.querySelectorAll('.seccion').forEach(s => s.classList.remove('activa'));
-            document.getElementById(id).classList.add('activa');
-        }
-        window.onload = cargar;
-    </script>
 </body>
 </html>
